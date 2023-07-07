@@ -1,53 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models.basic;
+using Entities.Models.basicInformation;
 
 namespace Entities.Models.user
 {
-    public interface Iuser
+    public class userModel : baseEntity
     {
-        long pk_fk_session_id { get; set; }
-        int fk_user_id { get; set; }
-        string name { get; set; }
-        string mobile { get; set; }
-        int appId { get; set; }
-        string authentication { get; set; }
-        userStatus userStatus { get; set; }
-        int fk_store_id { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string fName { get; set; }
 
-        void map(Iuser from);
-    }
+        [Required]
+        [StringLength(100)]
+        public string lName { get; set; }
 
-    public class userModel : Iuser
-    {
-        public long pk_fk_session_id { get; set; }
-        public int fk_user_id { get; set; }
-        public string name { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string nationalCode { get; set; }
+
+        [Required]
+        [StringLength(11)]
         public string mobile { get; set; }
-        public int appId { get; set; }
-        public string authentication { get; set; }
-        public userStatus userStatus { get; set; } = userStatus.ananonymous;
-        public int fk_store_id { get; set; }
 
-        public void map(Iuser from)
-        {
-            this.appId = from.appId;
-            this.authentication = from.authentication;
-            this.fk_user_id = from.fk_user_id;
-            this.mobile = from.mobile;
-            this.name = from.name;
-            this.pk_fk_session_id = from.pk_fk_session_id;
-            this.userStatus = from.userStatus;
-            this.fk_store_id = from.fk_store_id;
-        }
-    }
+        [Required]
+        [StringLength(100)]
+        public string email { get; set; }
 
-    public enum userStatus
-    {
-        ananonymous,
-        loggedIn,
-        unauthorized
+        [Required]
+        [StringLength(500)]
+        public string password { get; set; }
+
+        public int fk_country { get; set; }
+        public int fk_state { get; set; }
+        public int fk_city { get; set; }
+
+        [ForeignKey(nameof(fk_country))]
+        public countryModel country { get; set; }
+
+        [ForeignKey(nameof(fk_state))]
+        public stateModel state { get; set; }
+
+        [ForeignKey(nameof(fk_city))]
+        public cityModel city { get; set; }
+
     }
 }
