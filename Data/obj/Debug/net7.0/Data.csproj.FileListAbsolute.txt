@@ -1,0 +1,17 @@
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Data.deps.json
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Data.dll
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Data.pdb
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Common.dll
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Entities.dll
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Entities.pdb
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Common.pdb
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.csproj.AssemblyReference.cache
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.AssemblyInfoInputs.cache
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.AssemblyInfo.cs
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.csproj.CoreCompileInputs.cache
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.csproj.CopyComplete
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.dll
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\refint\Data.dll
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.pdb
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\ref\Data.dll
