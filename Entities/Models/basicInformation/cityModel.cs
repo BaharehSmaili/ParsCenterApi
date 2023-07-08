@@ -8,24 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models.basicInformation
+namespace Entities.Models.BasicInformation
 {
-    public class cityModel
+    public class CityModel
     {
-        public string title { get; set; }
+        public string Title { get; set; }
 
-        public int fk_state { get; set; }
+        public int StateId { get; set; }
 
-        public stateModel state { get; set; }
+        public StateModel State { get; set; }
 
     }
 
-    public class cityConfiguration : IEntityTypeConfiguration<cityModel>
+    public class CityConfiguration : IEntityTypeConfiguration<CityModel>
     {
-        public void Configure(EntityTypeBuilder<cityModel> builder)
+        public void Configure(EntityTypeBuilder<CityModel> builder)
         {
-            builder.Property(p => p.title).IsRequired().HasMaxLength(100);
-            builder.HasOne(p => p.state).WithMany(c => c.cites).HasForeignKey(p => p.fk_state);
+            builder.Property(p => p.Title).IsRequired().HasMaxLength(100);
+            builder.HasOne(p => p.State).WithMany(c => c.Cites).HasForeignKey(p => p.StateId);
         }
     }
 }

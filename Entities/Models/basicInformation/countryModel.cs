@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models.basicInformation
+namespace Entities.Models.BasicInformation
 {
-    public class countryModel
+    public class CountryModel
     {
         [Required]
         [StringLength(100)]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string titleEn { get; set; }
+        public string TitleEn { get; set; }
 
-        public ICollection<stateModel> states { get; set; }
+        public ICollection<StateModel> States { get; set; }
     }
 }

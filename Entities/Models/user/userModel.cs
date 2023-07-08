@@ -5,49 +5,49 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Models.basic;
-using Entities.Models.basicInformation;
+using Entities.Models.Basic;
+using Entities.Models.BasicInformation;
 
-namespace Entities.Models.user
+namespace Entities.Models.User
 {
-    public class userModel : baseEntity
+    public class UserModel : BaseEntity
     {
         [Required]
         [StringLength(100)]
-        public string fName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string lName { get; set; }
+        public string Family { get; set; }
 
         [Required]
         [StringLength(10)]
-        public string nationalCode { get; set; }
+        public string NationalCode { get; set; }
 
         [Required]
         [StringLength(11)]
-        public string mobile { get; set; }
+        public string Mobile { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [StringLength(500)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
-        public int fk_country { get; set; }
-        public int fk_state { get; set; }
-        public int fk_city { get; set; }
+        public int CountryId { get; set; }
+        public int StateId { get; set; }
+        public int CityId { get; set; }
 
-        [ForeignKey(nameof(fk_country))]
-        public countryModel country { get; set; }
+        [ForeignKey(nameof(CountryId))]
+        public CountryModel Country { get; set; }
 
-        [ForeignKey(nameof(fk_state))]
-        public stateModel state { get; set; }
+        [ForeignKey(nameof(StateId))]
+        public StateModel State { get; set; }
 
-        [ForeignKey(nameof(fk_city))]
-        public cityModel city { get; set; }
+        [ForeignKey(nameof(CityId))]
+        public CityModel City { get; set; }
 
     }
 }
