@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class UserRepository : Repository<User>
+    public class UserRepository : Repository<User> ,IUserRepository
     {
         public UserRepository(ApplicationDbContext dbContext)
             : base(dbContext)
