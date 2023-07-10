@@ -13,9 +13,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity>
-        //: IRepository<TEntity>
-        where TEntity : class, IEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         protected readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }

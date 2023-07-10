@@ -1,6 +1,6 @@
-﻿using Common.Exceptions;
-using Common.Utilities;
+﻿using Common.Utilities;
 using Entities;
+using Entities.Models.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>
     {
         public UserRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
         }
 
-        public Task<User> GetByUserAndPass(string username, string password, CancellationToken cancellationToken)
+        public Task<User> GetByUserAndPass(string mobile, string password, CancellationToken cancellationToken)
         {
             var passwordHash = SecurityHelper.GetSha256Hash(password);
-            return Table.Where(p => p.UserName == username && p.PasswordHash == passwordHash).SingleOrDefaultAsync(cancellationToken);
+            return Table.Where(p => p.Mobile == mobile && p.Password == passwordHash).SingleOrDefaultAsync(cancellationToken);
         }
 
         public async Task AddAsync(User user, string password, CancellationToken cancellationToken)
         {
-            var exists = await TableNoTracking.AnyAsync(p => p.UserName == user.UserName);
-            if (exists)
-                throw new BadRequestException("نام کاربری تکراری است");
+            var exists = await TableNoTracking.AnyAsync(p => p.Mobile == user.Mobile);
+            //if (exists)
+                //throw new BadRequestException("نام کاربری تکراری است");
 
             var passwordHash = SecurityHelper.GetSha256Hash(password);
-            user.PasswordHash = passwordHash;
+            user.Password = passwordHash;
             await base.AddAsync(user, cancellationToken);
         }
     }
