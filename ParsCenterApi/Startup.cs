@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using Data.Interface;
+using Data.Repositories;
 using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,25 +28,25 @@ namespace ParsCenterApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddDbContext<ApplicationDbContext>(options =>
-        //    {
-        //        //options.UseSqlServer("Data Source=.; Initial Catalog=ParsCenter; Integrated Security=True;");
-        //        options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
-        //    });
+        public void ConfigureServices(IServiceCollection services)
+        {
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
+            //});
 
-        //    //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
-        //    //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        //    //services.AddScoped<IUserRepository, UserRepository>();
-        //}
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
-        {
+        {      
             app.UseHsts();
             app.UseHttpsRedirection();
+
             app.UseMvc();
         }
     }
