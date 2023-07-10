@@ -11,19 +11,19 @@ using Entities.Models.Basic;
 
 namespace Entities.Models.BasicInformation
 {
-    public class StateModel : BaseEntity<int>
+    public class State : BaseEntity<int>
     {
         public string Title { get; set; }
 
         public int CountryId { get; set; }
 
-        public CountryModel Country { get; set; }
+        public Country Country { get; set; }
 
-        public ICollection<CityModel> Cites { get; set; }
+        public ICollection<City> Cites { get; set; }
     }
-    public class StateConfiguration : IEntityTypeConfiguration<StateModel>
+    public class StateConfiguration : IEntityTypeConfiguration<State>
     {
-        public void Configure(EntityTypeBuilder<StateModel> builder)
+        public void Configure(EntityTypeBuilder<State> builder)
         {
             builder.Property(p => p.Title).IsRequired().HasMaxLength(100);
             builder.HasOne(p => p.Country).WithMany(c => c.States).HasForeignKey(p => p.CountryId);

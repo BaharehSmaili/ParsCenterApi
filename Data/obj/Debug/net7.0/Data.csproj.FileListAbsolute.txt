@@ -15,3 +15,5 @@ D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.dll
 D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\refint\Data.dll
 D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.pdb
 D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\ref\Data.dll
+D:\Git_project\ParsCenterApi\Data\bin\Debug\net7.0\Data.runtimeconfig.json
+D:\Git_project\ParsCenterApi\Data\obj\Debug\net7.0\Data.genruntimeconfig.cache

@@ -10,7 +10,7 @@ using Entities.Models.BasicInformation;
 
 namespace Entities.Models.User
 {
-    public class UserModel : BaseEntity
+    public class User : BaseEntity
     {
         [Required]
         [StringLength(100)]
@@ -41,13 +41,13 @@ namespace Entities.Models.User
         public int CityId { get; set; }
 
         [ForeignKey(nameof(CountryId))]
-        public CountryModel Country { get; set; }
+        public Country Country { get; set; }
 
         [ForeignKey(nameof(StateId))]
-        public StateModel State { get; set; }
+        public State State { get; set; }
 
         [ForeignKey(nameof(CityId))]
-        public CityModel City { get; set; }
+        public City City { get; set; }
 
     }
 }
