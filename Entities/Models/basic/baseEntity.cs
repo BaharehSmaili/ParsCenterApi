@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models.basic
+namespace Entities.Models.Basic
 {
     public interface IEntity
     {
@@ -12,12 +12,12 @@ namespace Entities.Models.basic
         //اگر مدل ازین اینترفیس ایمپلیمنت بشه یعنی به دی بی کانتکس معرفی شده
     }
 
-    public abstract class baseEntity<TKey> : IEntity
+    public abstract class BaseEntity<TKey> : IEntity
     {
-        public TKey id { get; set; }
+        public TKey Id { get; set; }
     }
 
-    public abstract class baseEntity : baseEntity<Guid>
+    public abstract class BaseEntity : BaseEntity<Guid>
     {
 
     }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.Models.Basic;
 
-namespace Entities.Models.basic
+namespace Entities.Models.Basic
 {
-    public class ResultModel : baseModel
+    public class ResultModel : BaseModel
     {
         private bool v1;
         private string v2;

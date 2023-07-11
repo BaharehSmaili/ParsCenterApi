@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Models.basic
+namespace Entities.Models.Basic
 {
-    public class baseModel
+    public class BaseModel
     {
     }
 }
