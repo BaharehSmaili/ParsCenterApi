@@ -33,9 +33,11 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPost]
-        public async Task Create(State state, CancellationToken cancellationToken)
+        public async Task<ApiResult<State>> Create(State state, CancellationToken cancellationToken)
         {
             await repository.AddAsync(state, cancellationToken);
+            return Ok(state);
+
         }
 
         [HttpPut]

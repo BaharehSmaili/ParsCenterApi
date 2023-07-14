@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using WebFramework.Api;
+using WebFramework.Filters;
 
 namespace ParsCenterApi.Controllers
 {
@@ -23,10 +24,11 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ApiResult<List<User>>> Get(CancellationToken cancellationToken)
+        [ApiResultFilter]
+        public async Task<List<User>> Get(CancellationToken cancellationToken)
         {
             var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
-            return Ok(users);
+            return users;
         }
 
 
@@ -40,9 +42,10 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPost]
-        public async Task Create(User user, CancellationToken cancellationToken)
+        public async Task<ApiResult<User>> Create(User user, CancellationToken cancellationToken)
         {
             await userRepository.AddAsync(user, cancellationToken);
+            return Ok(user);
         }
 
         [HttpPut]
@@ -55,7 +58,7 @@ namespace ParsCenterApi.Controllers
             updateUser.Name = user.Name;
             updateUser.Family = user.Family;
             updateUser.NationalCode = user.NationalCode;
-            updateUser.Email = user.Email;  
+            updateUser.Email = user.Email;
             updateUser.Country = user.Country;
             updateUser.State = user.State;
             updateUser.City = user.City;
