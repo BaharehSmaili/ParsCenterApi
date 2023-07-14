@@ -2,6 +2,7 @@
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFramework.Api;
 
 namespace ParsCenterApi.Controllers
 {
@@ -16,14 +17,14 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<State>>> Get(CancellationToken cancellationToken)
+        public async Task<ApiResult<List<State>>> Get(CancellationToken cancellationToken)
         {
             var stetes = await repository.TableNoTracking.ToListAsync(cancellationToken);
             return Ok(stetes);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<State>> Get(int id, CancellationToken cancellationToken)
+        public async Task<ApiResult<State>> Get(int id, CancellationToken cancellationToken)
         {
             var state = await repository.GetByIdAsync(cancellationToken, id);
             if (state == null)
@@ -38,7 +39,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id, State state, CancellationToken cancellationToken)
+        public async Task<ApiResult> Update(int id, State state, CancellationToken cancellationToken)
         {
             var updateState = await repository.GetByIdAsync(cancellationToken, id);
 
@@ -51,7 +52,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id, CancellationToken cancellationToken)
+        public async Task<ApiResult> Delete(int id, CancellationToken cancellationToken)
         {
             var state = await repository.GetByIdAsync(cancellationToken, id);
             await repository.DeleteAsync(state, cancellationToken);

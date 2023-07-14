@@ -258,8 +258,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Git_project\\ParsCenterApi\\webFrameWork\\webFrameWork.csproj": {
-                "projectPath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\webFrameWork.csproj"
+              "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj": {
+                "projectPath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj"
               }
             }
           }
@@ -360,12 +360,12 @@
         }
       }
     },
-    "D:\\Git_project\\ParsCenterApi\\webFrameWork\\webFrameWork.csproj": {
+    "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\webFrameWork.csproj",
-        "projectName": "webFrameWork",
-        "projectPath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\webFrameWork.csproj",
+        "projectUniqueName": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj",
+        "projectName": "WebFramework",
+        "projectPath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj",
         "packagesPath": "C:\\Users\\Bahare Smaili\\.nuget\\packages\\",
         "outputPath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\obj\\",
         "projectStyle": "PackageReference",
@@ -404,6 +404,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

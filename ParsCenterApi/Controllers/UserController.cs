@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using WebFramework.Api;
 
 namespace ParsCenterApi.Controllers
 {
@@ -22,7 +23,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> Get(CancellationToken cancellationToken)
+        public async Task<ApiResult<List<User>>> Get(CancellationToken cancellationToken)
         {
             var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
             return Ok(users);
@@ -30,7 +31,7 @@ namespace ParsCenterApi.Controllers
 
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<User>> Get(Guid id, CancellationToken cancellationToken)
+        public async Task<ApiResult<User>> Get(Guid id, CancellationToken cancellationToken)
         {
             var user = await userRepository.GetByIdAsync(cancellationToken, id);
             if (user == null)
@@ -45,7 +46,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Guid id, User user, CancellationToken cancellationToken)
+        public async Task<ApiResult> Update(Guid id, User user, CancellationToken cancellationToken)
         {
             var updateUser = await userRepository.GetByIdAsync(cancellationToken, id);
 
@@ -65,7 +66,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        public async Task<ApiResult> Delete(Guid id, CancellationToken cancellationToken)
         {
             var user = await userRepository.GetByIdAsync(cancellationToken, id);
             await userRepository.DeleteAsync(user, cancellationToken);

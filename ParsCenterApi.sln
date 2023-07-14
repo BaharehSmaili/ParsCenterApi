@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsCenterApi", "ParsCenterApi\ParsCenterApi.csproj", "{080A52AF-3980-43E3-A127-6C36E71A1025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsCenterApi", "ParsCenterApi\ParsCenterApi.csproj", "{080A52AF-3980-43E3-A127-6C36E71A1025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{1CF7E9E5-4E73-4705-AE11-567011998B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{1CF7E9E5-4E73-4705-AE11-567011998B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{364CF7DC-8CAE-402B-B02F-5FC16AFDC664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{364CF7DC-8CAE-402B-B02F-5FC16AFDC664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{045D04A2-2C72-4EF6-A4F1-68F11D91AF7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{045D04A2-2C72-4EF6-A4F1-68F11D91AF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F90FC347-7EA5-4655-B756-C05FD4CF7D8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{F90FC347-7EA5-4655-B756-C05FD4CF7D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webFrameWork", "webFrameWork\webFrameWork.csproj", "{54D7DD1A-C549-42D1-8FCA-4503904F99D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebFramework", "webFrameWork\WebFramework.csproj", "{54D7DD1A-C549-42D1-8FCA-4503904F99D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

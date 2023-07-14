@@ -2,6 +2,7 @@
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFramework.Api;
 
 namespace ParsCenterApi.Controllers
 {
@@ -16,14 +17,14 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<City>>> Get(CancellationToken cancellationToken)
+        public async Task<ApiResult<List<City>>> Get(CancellationToken cancellationToken)
         {
             var citeis = await repository.TableNoTracking.ToListAsync(cancellationToken);
             return Ok(citeis);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<City>> Get(int id, CancellationToken cancellationToken)
+        public async Task<ApiResult<City>> Get(int id, CancellationToken cancellationToken)
         {
             var city = await repository.GetByIdAsync(cancellationToken, id);
             if (city == null)
@@ -35,10 +36,11 @@ namespace ParsCenterApi.Controllers
         public async Task Create(City city, CancellationToken cancellationToken)
         {
             await repository.AddAsync(city, cancellationToken);
+
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id, City city, CancellationToken cancellationToken)
+        public async Task<ApiResult> Update(int id, City city, CancellationToken cancellationToken)
         {
             var updateCity = await repository.GetByIdAsync(cancellationToken, id);
 
@@ -51,7 +53,7 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id, CancellationToken cancellationToken)
+        public async Task<ApiResult> Delete(int id, CancellationToken cancellationToken)
         {
             var city = await repository.GetByIdAsync(cancellationToken, id);
             await repository.DeleteAsync(city, cancellationToken);
