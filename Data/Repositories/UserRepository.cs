@@ -1,4 +1,5 @@
-﻿using Common.Utilities;
+﻿using Common.Exceptions;
+using Common.Utilities;
 using Entities;
 using Entities.Models.User;
 using Microsoft.EntityFrameworkCore;
@@ -21,17 +22,17 @@ namespace Data.Repositories
         public Task<User> GetByUserAndPass(string mobile, string password, CancellationToken cancellationToken)
         {
             var passwordHash = SecurityHelper.GetSha256Hash(password);
-            return Table.Where(p => p.Mobile == mobile && p.Password == passwordHash).SingleOrDefaultAsync(cancellationToken);
+            return Table.Where(p => p.Mobile == mobile && p.PasswordHash == passwordHash).SingleOrDefaultAsync(cancellationToken);
         }
 
         public async Task AddAsync(User user, string password, CancellationToken cancellationToken)
         {
             var exists = await TableNoTracking.AnyAsync(p => p.Mobile == user.Mobile);
-            //if (exists)
-                //throw new BadRequestException("نام کاربری تکراری است");
+            if (exists)
+                throw new BadRequestException("نام کاربری تکراری است");
 
             var passwordHash = SecurityHelper.GetSha256Hash(password);
-            user.Password = passwordHash;
+            user.PasswordHash = passwordHash;
             await base.AddAsync(user, cancellationToken);
         }
     }

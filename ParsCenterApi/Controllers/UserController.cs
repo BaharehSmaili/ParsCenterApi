@@ -45,8 +45,8 @@ namespace ParsCenterApi.Controllers
         [HttpPost]
         public async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
-
-            //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.UserName == userDto.UserName);
+            // در متد ادد سینک در یوزر ریپازیتوری چک می شود.
+            //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.NationalCode == userDto.NationalCode);
             //if (exists)
             //    return BadRequest("نام کاربری تکراری است");
 
@@ -68,14 +68,14 @@ namespace ParsCenterApi.Controllers
         var updateUser = await userRepository.GetByIdAsync(cancellationToken, id);
 
         updateUser.Mobile = user.Mobile;
-        updateUser.Password = user.Password;
+        updateUser.PasswordHash = user.PasswordHash;
         updateUser.Name = user.Name;
         updateUser.Family = user.Family;
         updateUser.NationalCode = user.NationalCode;
         updateUser.Email = user.Email;
-        updateUser.Country = user.Country;
-        updateUser.State = user.State;
-        updateUser.City = user.City;
+        //updateUser.Country = user.Country;
+        //updateUser.State = user.State;
+        //updateUser.City = user.City;
 
         await userRepository.UpdateAsync(updateUser, cancellationToken);
 

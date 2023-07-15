@@ -4,11 +4,13 @@ using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebFramework.Api;
+using WebFramework.Filters;
 
 namespace ParsCenterApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiResultFilter]
     public class CountryController : ControllerBase
     {
         private readonly IRepository<Country> repository;

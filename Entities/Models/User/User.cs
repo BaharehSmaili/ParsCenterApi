@@ -34,20 +34,20 @@ namespace Entities.Models.User
 
         [Required]
         [StringLength(500)]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
-        public int CountryId { get; set; }
-        public int StateId { get; set; }
-        public int CityId { get; set; }
+        //public int CountryId { get; set; }
+        //public int StateId { get; set; }
+        //public int CityId { get; set; }
 
-        [ForeignKey(nameof(CountryId))]
-        public Country Country { get; set; }
+        //[ForeignKey(nameof(CountryId))]
+        //public Country Country { get; set; }
 
-        [ForeignKey(nameof(StateId))]
-        public State State { get; set; }
+        //[ForeignKey(nameof(StateId))]
+        //public State State { get; set; }
 
-        [ForeignKey(nameof(CityId))]
-        public City City { get; set; }
+        //[ForeignKey(nameof(CityId))]
+        //public City City { get; set; }
 
     }
 }

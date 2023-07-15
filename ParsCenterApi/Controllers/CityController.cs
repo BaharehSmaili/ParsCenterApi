@@ -3,11 +3,13 @@ using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebFramework.Api;
+using WebFramework.Filters;
 
 namespace ParsCenterApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiResultFilter]
     public class CityController : ControllerBase
     {
         private readonly IRepository<City> repository;
