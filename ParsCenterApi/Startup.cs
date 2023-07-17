@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Services;
 using WebFramework.Middlewares;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -45,6 +46,8 @@ namespace ParsCenterApi
             services.AddScoped<IRepository<Country>, Repository<Country>>();
             services.AddScoped<IRepository<State>, Repository<State>>();
             services.AddScoped<IRepository<City>, Repository<City>>();
+
+            services.AddScoped<IJwtService, JwtService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

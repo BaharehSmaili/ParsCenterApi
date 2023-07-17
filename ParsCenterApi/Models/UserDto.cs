@@ -35,6 +35,8 @@ namespace ParsCenterApi.Models
         [StringLength(500)]
         public string Password { get; set; }
 
+        public bool IsActive { get; set; }
+
         public int CountryId { get; set; }
         public int StateId { get; set; }
         public int CityId { get; set; }

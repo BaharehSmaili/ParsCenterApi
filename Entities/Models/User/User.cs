@@ -12,6 +12,12 @@ namespace Entities.Models.User
 {
     public class User : BaseEntity
     {
+        public User()
+        {
+            IsActive = true;
+            SecurityStamp = Guid.NewGuid();
+        }
+
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
@@ -35,6 +41,12 @@ namespace Entities.Models.User
         [Required]
         [StringLength(500)]
         public string PasswordHash { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public DateTimeOffset? LastLoginDate { get; set; }
+
+        public Guid SecurityStamp { get; set; }
 
         //public int CountryId { get; set; }
         //public int StateId { get; set; }
