@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Data;
 using Data.Interface;
 using Data.Repositories;
+using ElmahCore.Mvc;
+using ElmahCore.Sql;
 using Entities;
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Builder;
@@ -34,12 +36,18 @@ namespace ParsCenterApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
-            });
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
+            //});
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.Path = "/elmah-errors";
+                options.ConnectionString = Configuration.GetConnectionString("Elmah");
+            });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
@@ -64,6 +72,8 @@ namespace ParsCenterApi
                 //app.UseExceptionHandler();
                 app.UseHsts();
             }
+
+            app.UseElmah();
 
             app.UseHttpsRedirection();
             app.UseMvc();
