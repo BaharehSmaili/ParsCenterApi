@@ -107,6 +107,12 @@ namespace Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LastLoginDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Mobile")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -126,6 +132,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("SecurityStamp")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

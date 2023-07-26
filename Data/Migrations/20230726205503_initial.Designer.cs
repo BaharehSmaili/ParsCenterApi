@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230715211418_initial")]
+    [Migration("20230726205503_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -110,6 +110,12 @@ namespace Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LastLoginDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Mobile")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -129,6 +135,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("SecurityStamp")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

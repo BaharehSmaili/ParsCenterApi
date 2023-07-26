@@ -21,14 +21,14 @@ namespace Data
 
         }
 
-        //در صورتی که از این حالت برای ایجاد پرووایدر استفاده کنیم نباید از کاناستراکتور و استارت اپ استفاده نماییم.
-        private const string connectionsString = "Data Source=.;Initial Catalog=ParsCenter;User ID=sa;password=sa@123456;MultipleActiveResultSets=true;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=False;Persist Security Info=False";
+        ////در صورتی که از این حالت برای ایجاد پرووایدر استفاده کنیم نباید از کاناستراکتور و استارت اپ استفاده نماییم.
+        //private const string connectionsString = "Data Source=.;Initial Catalog=ParsCenter;User ID=sa;password=sa@123456;MultipleActiveResultSets=true;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=False;Persist Security Info=False";
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(connectionsString);
-            base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(connectionsString);
+        //    base.OnConfiguring(optionsBuilder);
+        //}
 
         //وظیفه این متد ساختن جدول از روی مدل هاست
         protected override void OnModelCreating(ModelBuilder modelBuilder)

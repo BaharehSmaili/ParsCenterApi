@@ -39,7 +39,7 @@ namespace ParsCenterApi
                    .ConfigureLogging(logging =>
                    {
                        logging.ClearProviders();
-                       //logging.SetMinimumLevel(LogLevel.Trace);
+                       logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                    })
                    .UseNLog()
                    .UseStartup<Startup>();

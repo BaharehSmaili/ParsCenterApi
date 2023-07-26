@@ -35,9 +35,9 @@ namespace WebFramework.Configuration
                     RequireSignedTokens = true,
 
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(secretkey),
+                    IssuerSigningKey = new SymmetricSecurityKey(secretkey), //باید با روش رمز نگاری استفاده شده در فایل JwtService یکی باشد 
 
-                    RequireExpirationTime = true,
+                    RequireExpirationTime = true, //life Time
                     ValidateLifetime = true,
 
                     ValidateAudience = true, //default : false
@@ -76,8 +76,8 @@ namespace WebFramework.Configuration
                             context.Fail("This token has no secuirty stamp");
 
                         //Find user and token from database and perform your custom validation
-                        var userId = claimsIdentity.GetUserId<int>();
-                        var user = await userRepository.GetByIdAsync(context.HttpContext.RequestAborted, userId);
+                        var userMobile = claimsIdentity.GetUserId<string>();
+                        var user = await userRepository.GetByUserMobile(userMobile);
 
                         if (user.SecurityStamp != Guid.Parse(securityStamp))
                             context.Fail("Token secuirty stamp is not valid.");

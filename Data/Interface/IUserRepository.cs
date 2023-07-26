@@ -15,5 +15,7 @@ namespace Data.Repositories
         Task UpdateSecuirtyStampAsync(User user, CancellationToken cancellationToken);
 
         Task UpdateLastLoginDateAsync(User user, CancellationToken cancellationToken);
+
+        Task<User> GetByUserMobile(string mobile);
     }
 }

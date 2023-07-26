@@ -47,5 +47,10 @@ namespace Data.Repositories
             user.LastLoginDate = DateTimeOffset.Now;
             return UpdateAsync(user, cancellationToken);
         }
+
+        public Task<User> GetByUserMobile(string mobile)
+        {
+            return Table.Where(p => p.Mobile == mobile).SingleOrDefaultAsync();
+        }
     }
 }

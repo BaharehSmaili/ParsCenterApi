@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
 using Data;
 using Data.Interface;
 using Data.Repositories;
@@ -20,33 +21,50 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Services;
 using WebFramework.Middlewares;
+using WebFramework.Configuration;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ParsCenterApi
 {
     public class Startup
     {
+        private readonly SiteSettings _siteSetting;
+
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _siteSetting = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //{
-            //    options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
-            //});
+            services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
+            });
+
+            //services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AuthorizeFilter());
+                options.EnableEndpointRouting = false;
+            });
 
             services.AddElmah<SqlErrorLog>(options =>
             {
-                options.Path = "/elmah-errors";
+                options.Path = _siteSetting.ElmahPath;
                 options.ConnectionString = Configuration.GetConnectionString("Elmah");
+                //options.CheckPermissionAction = httpContext =>
+                //{
+                //    return httpContext.User.Identity.IsAuthenticated;
+                //};
             });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -54,8 +72,11 @@ namespace ParsCenterApi
             services.AddScoped<IRepository<Country>, Repository<Country>>();
             services.AddScoped<IRepository<State>, Repository<State>>();
             services.AddScoped<IRepository<City>, Repository<City>>();
+            services.AddHttpContextAccessor();
 
             services.AddScoped<IJwtService, JwtService>();
+
+            services.AddJwtAuthentication(_siteSetting.JwtSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,8 +95,8 @@ namespace ParsCenterApi
             }
 
             app.UseElmah();
-
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

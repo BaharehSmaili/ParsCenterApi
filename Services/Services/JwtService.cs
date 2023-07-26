@@ -58,8 +58,8 @@ namespace Services
 
             var list = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.NationalCode),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, (user.Name + "_" + user.Family)),
+                new Claim(ClaimTypes.NameIdentifier, user.Mobile.ToString()),
                 new Claim(ClaimTypes.MobilePhone, user.Mobile),
                 new Claim(securityStampClaimType, user.SecurityStamp.ToString())
             };

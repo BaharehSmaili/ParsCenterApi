@@ -15,13 +15,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebFramework.Api;
 using WebFramework.Filters;
-using ElmahCore;
+using System.Security.Claims;
+using Common;
 
 namespace ParsCenterApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     [ApiResultFilter]
+    [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
@@ -36,13 +37,14 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
+        //[AllowAnonymous]
         public async Task<List<User>> Get(CancellationToken cancellationToken)
         {
 
-            logger.LogDebug("This is a debug message");
-            logger.LogInformation("This is an info message");
-            logger.LogWarning("This is a warning message ");
-            logger.LogError(new Exception(), "This is an error message");
+            //logger.LogDebug("This is a debug message");
+            //logger.LogInformation("This is an info message");
+            //logger.LogWarning("This is a warning message ");
+            //logger.LogError(new Exception(), "This is an error message");
             var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
             return users;
         }
@@ -56,6 +58,21 @@ namespace ParsCenterApi.Controllers
                 return NotFound();
             return user;
         }
+
+        //[HttpGet]
+        ////[Authorize(Roles = "Admin")]
+        //public async Task<ActionResult<List<User>>> GetAll(CancellationToken cancellationToken)
+        //{
+        //    var userName = HttpContext.User.Identity.GetUserName();
+        //    userName = HttpContext.User.Identity.Name;
+        //    var userId = HttpContext.User.Identity.GetUserId();
+        //    var userIdInt = HttpContext.User.Identity.GetUserId<int>();
+        //    var phone = HttpContext.User.Identity.FindFirstValue(ClaimTypes.MobilePhone);
+        //    //var role = HttpContext.User.Identity.FindFirstValue(ClaimTypes.Role);
+
+        //    var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
+        //    return Ok(users);
+        //}
 
         [HttpPost]
         public async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
@@ -76,7 +93,7 @@ namespace ParsCenterApi.Controllers
                 NationalCode = userDto.NationalCode,
                 Mobile = userDto.Mobile,
                 Email = userDto.Email,
-                IsActive = userDto.IsActive,
+                IsActive = true,//userDto.IsActive,
                 LastLoginDate = DateTimeOffset.Now
         };
             await userRepository.AddAsync(user, userDto.Password, cancellationToken);
@@ -117,9 +134,9 @@ namespace ParsCenterApi.Controllers
 
         [HttpGet("[action]")]
         [AllowAnonymous]
-        public async Task<string> Token(string nationalCode, string password, CancellationToken cancellationToken)
+        public async Task<string> Token(string mobile, string password, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByUserAndPass(nationalCode, password, cancellationToken);
+            var user = await userRepository.GetByUserAndPass(mobile, password, cancellationToken);
             if (user == null)
                 throw new BadRequestException("کد ملی یا رمز عبور اشتباه است");
 

@@ -9,8 +9,10 @@
       "ParsCenterApi/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "7.0.9",
+          "NLog.Extensions.Logging": "5.3.2",
           "NLog.Targets.Sentry5": "1.0.2",
           "NLog.Web.AspNetCore": "5.3.2",
+          "System.Data.SqlClient": "4.8.5",
           "WebFramework": "1.0.0"
         },
         "runtime": {
@@ -58,7 +60,7 @@
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.Extensions.Logging": "7.0.0",
-          "System.Data.SqlClient": "4.8.2",
+          "System.Data.SqlClient": "4.8.5",
           "System.Diagnostics.DiagnosticSource": "5.0.1",
           "System.Text.Json": "7.0.0"
         },
@@ -87,7 +89,7 @@
       "ElmahCore.Sql/2.1.2": {
         "dependencies": {
           "ElmahCore.Common": "2.1.2",
-          "System.Data.SqlClient": "4.8.2"
+          "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
           "lib/netstandard2.0/ElmahCore.Sql.dll": {
@@ -1188,7 +1190,7 @@
           "System.Text.Encoding": "4.3.0"
         }
       },
-      "System.Data.SqlClient/4.8.2": {
+      "System.Data.SqlClient/4.8.5": {
         "dependencies": {
           "Microsoft.Win32.Registry": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0",
@@ -1196,22 +1198,22 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/System.Data.SqlClient.dll": {
-            "assemblyVersion": "4.6.1.2",
-            "fileVersion": "4.700.20.37001"
+            "assemblyVersion": "4.6.1.5",
+            "fileVersion": "4.700.22.51706"
           }
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll": {
             "rid": "unix",
             "assetType": "runtime",
-            "assemblyVersion": "4.6.1.2",
-            "fileVersion": "4.700.20.37001"
+            "assemblyVersion": "4.6.1.5",
+            "fileVersion": "4.700.22.51706"
           },
           "runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll": {
             "rid": "win",
             "assetType": "runtime",
-            "assemblyVersion": "4.6.1.2",
-            "fileVersion": "4.700.20.37001"
+            "assemblyVersion": "4.6.1.5",
+            "fileVersion": "4.700.22.51706"
           }
         }
       },
@@ -3016,12 +3018,12 @@
       "path": "system.console/4.3.0",
       "hashPath": "system.console.4.3.0.nupkg.sha512"
     },
-    "System.Data.SqlClient/4.8.2": {
+    "System.Data.SqlClient/4.8.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-80vGtW6uLB4AkyrdVuKTXYUyuXDPAsSKbTVfvjndZaRAYxzFzWhJbvUfeAKrN+128ycWZjLIAl61dFUwWHOOTw==",
-      "path": "system.data.sqlclient/4.8.2",
-      "hashPath": "system.data.sqlclient.4.8.2.nupkg.sha512"
+      "sha512": "sha512-fRqxut4lrndPHrXD+ht1XRmCL3obuKldm4XjCRYS9p5f7FSR7shBxAwTkDrpFMsHC9BhNgjjmUtiIjvehn5zkg==",
+      "path": "system.data.sqlclient/4.8.5",
+      "hashPath": "system.data.sqlclient.4.8.5.nupkg.sha512"
     },
     "System.Diagnostics.Debug/4.3.0": {
       "type": "package",

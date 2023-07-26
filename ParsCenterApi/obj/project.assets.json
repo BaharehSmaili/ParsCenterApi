@@ -2299,7 +2299,7 @@
           }
         }
       },
-      "System.Data.SqlClient/4.8.2": {
+      "System.Data.SqlClient/4.8.5": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -6620,10 +6620,10 @@
         "system.console.nuspec"
       ]
     },
-    "System.Data.SqlClient/4.8.2": {
-      "sha512": "80vGtW6uLB4AkyrdVuKTXYUyuXDPAsSKbTVfvjndZaRAYxzFzWhJbvUfeAKrN+128ycWZjLIAl61dFUwWHOOTw==",
+    "System.Data.SqlClient/4.8.5": {
+      "sha512": "fRqxut4lrndPHrXD+ht1XRmCL3obuKldm4XjCRYS9p5f7FSR7shBxAwTkDrpFMsHC9BhNgjjmUtiIjvehn5zkg==",
       "type": "package",
-      "path": "system.data.sqlclient/4.8.2",
+      "path": "system.data.sqlclient/4.8.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6700,7 +6700,7 @@
         "runtimes/win/lib/netstandard2.0/System.Data.SqlClient.xml",
         "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.dll",
         "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.xml",
-        "system.data.sqlclient.4.8.2.nupkg.sha512",
+        "system.data.sqlclient.4.8.5.nupkg.sha512",
         "system.data.sqlclient.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -10543,8 +10543,10 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.EntityFrameworkCore.Design >= 7.0.9",
+      "NLog.Extensions.Logging >= 5.3.2",
       "NLog.Targets.Sentry5 >= 1.0.2",
       "NLog.Web.AspNetCore >= 5.3.2",
+      "System.Data.SqlClient >= 4.8.5",
       "WebFramework >= 1.0.0"
     ]
   },
@@ -10604,6 +10606,10 @@
             "target": "Package",
             "version": "[7.0.9, )"
           },
+          "NLog.Extensions.Logging": {
+            "target": "Package",
+            "version": "[5.3.2, )"
+          },
           "NLog.Targets.Sentry5": {
             "target": "Package",
             "version": "[1.0.2, )"
@@ -10611,6 +10617,10 @@
           "NLog.Web.AspNetCore": {
             "target": "Package",
             "version": "[5.3.2, )"
+          },
+          "System.Data.SqlClient": {
+            "target": "Package",
+            "version": "[4.8.5, )"
           }
         },
         "imports": [
