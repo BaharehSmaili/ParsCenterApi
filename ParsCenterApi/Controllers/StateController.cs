@@ -12,23 +12,23 @@ namespace ParsCenterApi.Controllers
     [ApiResultFilter]
     public class StateController : ControllerBase
     {
-        private readonly IRepository<State> repository;
-        public StateController(IRepository<State> repository)
+        private readonly IRepository<State> _stateRepository;
+        public StateController(IRepository<State> stateRepository)
         {
-            this.repository = repository;
+            this._stateRepository = stateRepository;
         }
 
         [HttpGet]
         public async Task<ApiResult<List<State>>> Get(CancellationToken cancellationToken)
         {
-            var stetes = await repository.TableNoTracking.ToListAsync(cancellationToken);
+            var stetes = await _stateRepository.TableNoTracking.ToListAsync(cancellationToken);
             return Ok(stetes);
         }
 
         [HttpGet("{id:int}")]
         public async Task<ApiResult<State>> Get(int id, CancellationToken cancellationToken)
         {
-            var state = await repository.GetByIdAsync(cancellationToken, id);
+            var state = await _stateRepository.GetByIdAsync(cancellationToken, id);
             if (state == null)
                 return NotFound();
             return state;
@@ -37,7 +37,7 @@ namespace ParsCenterApi.Controllers
         [HttpPost]
         public async Task<ApiResult<State>> Create(State state, CancellationToken cancellationToken)
         {
-            await repository.AddAsync(state, cancellationToken);
+            await _stateRepository.AddAsync(state, cancellationToken);
             return Ok(state);
 
         }
@@ -45,12 +45,12 @@ namespace ParsCenterApi.Controllers
         [HttpPut]
         public async Task<ApiResult> Update(int id, State state, CancellationToken cancellationToken)
         {
-            var updateState = await repository.GetByIdAsync(cancellationToken, id);
+            var updateState = await _stateRepository.GetByIdAsync(cancellationToken, id);
 
             updateState.Title = state.Title;
             updateState.CountryId = state.CountryId;
 
-            await repository.UpdateAsync(updateState, cancellationToken);
+            await _stateRepository.UpdateAsync(updateState, cancellationToken);
 
             return Ok();
         }
@@ -58,8 +58,8 @@ namespace ParsCenterApi.Controllers
         [HttpDelete]
         public async Task<ApiResult> Delete(int id, CancellationToken cancellationToken)
         {
-            var state = await repository.GetByIdAsync(cancellationToken, id);
-            await repository.DeleteAsync(state, cancellationToken);
+            var state = await _stateRepository.GetByIdAsync(cancellationToken, id);
+            await _stateRepository.DeleteAsync(state, cancellationToken);
 
             return Ok();
         }

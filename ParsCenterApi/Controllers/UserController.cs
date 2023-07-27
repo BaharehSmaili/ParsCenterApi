@@ -25,15 +25,15 @@ namespace ParsCenterApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository userRepository;
-        private readonly ILogger<UserController> logger;
-        private readonly IJwtService jwtService;
+        private readonly IUserRepository _userRepository;
+        private readonly ILogger<UserController> _logger;
+        private readonly IJwtService _jwtService;
 
         public UserController(IUserRepository userRepository, ILogger<UserController> logger, IJwtService jwtService)
         {
-            this.userRepository = userRepository;
-            this.logger = logger;
-            this.jwtService = jwtService;
+            this._userRepository = userRepository;
+            this._logger = logger;
+            this._jwtService = jwtService;
         }
 
         [HttpGet]
@@ -41,11 +41,11 @@ namespace ParsCenterApi.Controllers
         public async Task<List<User>> Get(CancellationToken cancellationToken)
         {
 
-            //logger.LogDebug("This is a debug message");
-            //logger.LogInformation("This is an info message");
-            //logger.LogWarning("This is a warning message ");
-            //logger.LogError(new Exception(), "This is an error message");
-            var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
+            //_logger.LogDebug("This is a debug message");
+            //_logger.LogInformation("This is an info message");
+            //_logger.LogWarning("This is a warning message ");
+            //_logger.LogError(new Exception(), "This is an error message");
+            var users = await _userRepository.TableNoTracking.ToListAsync(cancellationToken);
             return users;
         }
 
@@ -54,7 +54,7 @@ namespace ParsCenterApi.Controllers
         [AllowAnonymous]
         public async Task<ApiResult<User>> Get(Guid id, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByIdAsync(cancellationToken, id);
+            var user = await _userRepository.GetByIdAsync(cancellationToken, id);
             if (user == null)
                 return NotFound();
 
@@ -72,7 +72,7 @@ namespace ParsCenterApi.Controllers
         //    var phone = HttpContext.User.Identity.FindFirstValue(ClaimTypes.MobilePhone);
         //    //var role = HttpContext.User.Identity.FindFirstValue(ClaimTypes.Role);
 
-        //    var users = await userRepository.TableNoTracking.ToListAsync(cancellationToken);
+        //    var users = await _userRepository.TableNoTracking.ToListAsync(cancellationToken);
         //    return Ok(users);
         //}
 
@@ -80,11 +80,11 @@ namespace ParsCenterApi.Controllers
         public async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
             //برای ایجاد لاگ در دیتابیس در صورت نیاز 
-            logger.LogError("متد Create فراخوانی شد");
+            _logger.LogError("متد Create فراخوانی شد");
             //HttpContext.RiseError(new Exception("متد Create فراخوانی شد"));
 
             // در متد ادد سینک در یوزر ریپازیتوری چک می شود.
-            //var exists = await userRepository.TableNoTracking.AnyAsync(p => p.NationalCode == userDto.NationalCode);
+            //var exists = await _userRepository.TableNoTracking.AnyAsync(p => p.NationalCode == userDto.NationalCode);
             //if (exists)
             //    return BadRequest("نام کاربری تکراری است");
 
@@ -98,14 +98,14 @@ namespace ParsCenterApi.Controllers
                 IsActive = true,//userDto.IsActive,
                 LastLoginDate = DateTimeOffset.Now
         };
-            await userRepository.AddAsync(user, userDto.Password, cancellationToken);
+            await _userRepository.AddAsync(user, userDto.Password, cancellationToken);
             return user;
         }
 
         [HttpPut]
         public async Task<ApiResult> Update(Guid id, User user, CancellationToken cancellationToken)
         {
-            var updateUser = await userRepository.GetByIdAsync(cancellationToken, id);
+            var updateUser = await _userRepository.GetByIdAsync(cancellationToken, id);
 
             updateUser.Mobile = user.Mobile;
             updateUser.PasswordHash = user.PasswordHash;
@@ -120,9 +120,9 @@ namespace ParsCenterApi.Controllers
             //updateUser.State = user.State;
             //updateUser.City = user.City;
 
-            await userRepository.UpdateAsync(updateUser, cancellationToken);
+            await _userRepository.UpdateAsync(updateUser, cancellationToken);
 
-            await userRepository.UpdateSecuirtyStampAsync(user, cancellationToken); //برای امنیت و عدم استفاده از توکن قدیمی
+            await _userRepository.UpdateSecuirtyStampAsync(user, cancellationToken); //برای امنیت و عدم استفاده از توکن قدیمی
 
             return Ok();
         }
@@ -130,8 +130,8 @@ namespace ParsCenterApi.Controllers
         [HttpDelete]
         public async Task<ApiResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByIdAsync(cancellationToken, id);
-            await userRepository.DeleteAsync(user, cancellationToken);
+            var user = await _userRepository.GetByIdAsync(cancellationToken, id);
+            await _userRepository.DeleteAsync(user, cancellationToken);
 
             return Ok();
         }
@@ -140,11 +140,11 @@ namespace ParsCenterApi.Controllers
         [AllowAnonymous]
         public async Task<string> Token(string mobile, string password, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetByUserAndPass(mobile, password, cancellationToken);
+            var user = await _userRepository.GetByUserAndPass(mobile, password, cancellationToken);
             if (user == null)
                 throw new BadRequestException("کد ملی یا رمز عبور اشتباه است");
 
-            var jwt = jwtService.Generate(user);
+            var jwt = _jwtService.Generate(user);
             return jwt;
         }
     }

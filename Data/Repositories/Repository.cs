@@ -27,7 +27,7 @@ namespace Data.Repositories
         }
 
         #region Async Method
-        public virtual async Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
+        public virtual async Task<TEntity?> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
         {
             return await Entities.FindAsync(ids, cancellationToken);
         }
@@ -82,7 +82,7 @@ namespace Data.Repositories
         #endregion
 
         #region Sync Methods
-        public virtual TEntity GetById(params object[] ids)
+        public virtual TEntity? GetById(params object[] ids)
         {
             return Entities.Find(ids);
         }
