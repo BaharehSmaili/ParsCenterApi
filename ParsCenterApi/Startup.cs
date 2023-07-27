@@ -49,8 +49,6 @@ namespace ParsCenterApi
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });
 
-            //services.AddMvc(options => options.EnableEndpointRouting = false);
-
             services.AddMvc(options =>
             {
                 options.Filters.Add(new AuthorizeFilter());

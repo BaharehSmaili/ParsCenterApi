@@ -51,11 +51,13 @@ namespace ParsCenterApi.Controllers
 
 
         [HttpGet("{id:guid}")]
+        [AllowAnonymous]
         public async Task<ApiResult<User>> Get(Guid id, CancellationToken cancellationToken)
         {
             var user = await userRepository.GetByIdAsync(cancellationToken, id);
             if (user == null)
                 return NotFound();
+
             return user;
         }
 
@@ -119,6 +121,8 @@ namespace ParsCenterApi.Controllers
             //updateUser.City = user.City;
 
             await userRepository.UpdateAsync(updateUser, cancellationToken);
+
+            await userRepository.UpdateSecuirtyStampAsync(user, cancellationToken); //برای امنیت و عدم استفاده از توکن قدیمی
 
             return Ok();
         }

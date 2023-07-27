@@ -28,6 +28,7 @@ namespace WebFramework.Configuration
             }).AddJwtBearer(options =>
             {
                 var secretkey = Encoding.UTF8.GetBytes(jwtSettings.SecretKey);
+                var encryptionkey = Encoding.UTF8.GetBytes(jwtSettings.Encryptkey);
 
                 var validationParameters = new TokenValidationParameters
                 {
@@ -44,7 +45,9 @@ namespace WebFramework.Configuration
                     ValidAudience = jwtSettings.Audience,
 
                     ValidateIssuer = true, //default : false
-                    ValidIssuer = jwtSettings.Issuer
+                    ValidIssuer = jwtSettings.Issuer,
+
+                    TokenDecryptionKey = new SymmetricSecurityKey(encryptionkey)
                 };
 
                 options.RequireHttpsMetadata = false;
@@ -54,9 +57,6 @@ namespace WebFramework.Configuration
                 {
                     OnAuthenticationFailed = context =>
                     {
-                        //var logger = context.HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger(nameof(JwtBearerEvents));
-                        //logger.LogError("Authentication failed.", context.Exception);
-
                         if (context.Exception != null)
                             throw new AppException(ApiResultStatusCode.UnAuthorized, "Authentication failed.", HttpStatusCode.Unauthorized, context.Exception, null);
 
@@ -64,7 +64,6 @@ namespace WebFramework.Configuration
                     },
                     OnTokenValidated = async context =>
                     {
-                        //var applicationSignInManager = context.HttpContext.RequestServices.GetRequiredService<IApplicationSignInManager>();
                         var userRepository = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
 
                         var claimsIdentity = context.Principal.Identity as ClaimsIdentity;
@@ -77,14 +76,10 @@ namespace WebFramework.Configuration
 
                         //Find user and token from database and perform your custom validation
                         var userMobile = claimsIdentity.GetUserId<string>();
-                        var user = await userRepository.GetByUserMobile(userMobile);
+                        var user = await userRepository.GetByUserMobile(userMobile, context.HttpContext.RequestAborted);
 
                         if (user.SecurityStamp != Guid.Parse(securityStamp))
                             context.Fail("Token secuirty stamp is not valid.");
-
-                        //var validatedUser = await applicationSignInManager.ValidateSecurityStampAsync(context.Principal);
-                        //if (validatedUser == null)
-                        //    context.Fail("Token secuirty stamp is not valid.");
 
                         if (!user.IsActive)
                             context.Fail("User is not active.");
@@ -93,14 +88,10 @@ namespace WebFramework.Configuration
                     },
                     OnChallenge = context =>
                     {
-                        //var logger = context.HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger(nameof(JwtBearerEvents));
-                        //logger.LogError("OnChallenge error", context.Error, context.ErrorDescription);
 
                         if (context.AuthenticateFailure != null)
                             throw new AppException(ApiResultStatusCode.UnAuthorized, "Authenticate failure.", HttpStatusCode.Unauthorized, context.AuthenticateFailure, null);
                         throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
-
-                        //return Task.CompletedTask;
                     }
                 };
             });

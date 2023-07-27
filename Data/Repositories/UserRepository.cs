@@ -42,15 +42,21 @@ namespace Data.Repositories
             return UpdateAsync(user, cancellationToken);
         }
 
+        //public override void Update(User entity, bool saveNow = true)
+        //{
+        //    entity.SecurityStamp = Guid.NewGuid();
+        //    base.Update(entity, saveNow);
+        //}
+
         public Task UpdateLastLoginDateAsync(User user, CancellationToken cancellationToken)
         {
             user.LastLoginDate = DateTimeOffset.Now;
             return UpdateAsync(user, cancellationToken);
         }
 
-        public Task<User> GetByUserMobile(string mobile)
+        public Task<User> GetByUserMobile(string mobile, CancellationToken cancellationToken)
         {
-            return Table.Where(p => p.Mobile == mobile).SingleOrDefaultAsync();
+            return Table.Where(p => p.Mobile == mobile).SingleOrDefaultAsync(cancellationToken);
         }
     }
 }

@@ -25,6 +25,9 @@ namespace Services
             var secretKey = Encoding.UTF8.GetBytes(_siteSetting.JwtSettings.SecretKey); // باید بیشتر از 16 کاراکتر باشد
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
 
+            var encryptionkey = Encoding.UTF8.GetBytes(_siteSetting.JwtSettings.Encryptkey); // باید فقط 16 کاراکتر باشد
+            var encryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(encryptionkey), SecurityAlgorithms.Aes128KW, SecurityAlgorithms.Aes128CbcHmacSha256);
+
             var claims = _getClaims(user);
 
             var descriptor = new SecurityTokenDescriptor
@@ -35,6 +38,7 @@ namespace Services
                 NotBefore = DateTime.Now.AddMinutes(_siteSetting.JwtSettings.NotBeforeMinutes),
                 Expires = DateTime.Now.AddMinutes(_siteSetting.JwtSettings.ExpirationMinutes),
                 SigningCredentials = signingCredentials,
+                EncryptingCredentials = encryptingCredentials,
                 Subject = new ClaimsIdentity(claims)
             };
 

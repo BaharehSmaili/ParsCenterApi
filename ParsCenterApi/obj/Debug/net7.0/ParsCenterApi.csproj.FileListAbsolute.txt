@@ -105,3 +105,7 @@ D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\NLog.Extensions.Logg
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\NLog.Targets.Sentry5.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\SharpRaven.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
