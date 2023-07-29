@@ -15,13 +15,14 @@ namespace Data
 {
     public class ApplicationDbContext : DbContext
     {
-        //ساخت کاناستراکتور و سازنده برای استفاده ار استارت آپ پروژه اصلی
+        //ساخت کاناستراکتور و سازنده برای استفاده در استارت آپ پروژه اصلی
+        //الان بردیمش توی لایه ریمورک ServiceCollectionExtensions  متد AddDbContext
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
 
         }
 
-        ////در صورتی که از این حالت برای ایجاد پرووایدر استفاده کنیم نباید از کاناستراکتور و استارت اپ استفاده نماییم.
+        //در صورتی که از این حالت برای ایجاد پرووایدر استفاده کنیم نباید از کاناستراکتور و استارت اپ استفاده نماییم.
         //private const string connectionsString = "Data Source=.;Initial Catalog=ParsCenter;User ID=sa;password=sa@123456;MultipleActiveResultSets=true;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=False;Persist Security Info=False";
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

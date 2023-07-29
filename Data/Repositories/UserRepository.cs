@@ -1,4 +1,5 @@
 ﻿using Common.Exceptions;
+using Common.Interface;
 using Common.Utilities;
 using Entities;
 using Entities.Models.User;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class UserRepository : Repository<User> ,IUserRepository
+    public class UserRepository : Repository<User> ,IUserRepository, IScopedDependency
     {
         public UserRepository(ApplicationDbContext dbContext)
             : base(dbContext)

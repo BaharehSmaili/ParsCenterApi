@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Interface;
 using Entities;
 using Entities.Models.User;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +13,7 @@ using System.Text;
 
 namespace Services
 {
-    public class JwtService : IJwtService
+    public class JwtService : IJwtService, IScopedDependency
     {
         private readonly SiteSettings _siteSetting;
         public JwtService(IOptionsSnapshot<SiteSettings> settings)

@@ -1,4 +1,5 @@
-﻿using Common.Utilities;
+﻿using Common.Interface;
+using Common.Utilities;
 using Data.Interface;
 using Entities;
 using Entities.Models.Basic;

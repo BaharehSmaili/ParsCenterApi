@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Uj5S3iBCeaOnhJzuLHBPqyKJoxXEbUgIRmAp3sMDYBhsEsrY0LzHJOuRm979Wwk7kiBWnt/QEqwbCaeVKz9ApQ==",
+  "dgSpecHash": "sTB03jYmdbq8it+GeSEDiMYnR+yGLQMxIAyZs7VFtpayKB7NxSvGQCRDTU5PS9GBi3/obl3bFpQ4h2anWuJuhw==",
   "success": true,
   "projectFilePath": "D:\\Git_project\\ParsCenterApi\\webFrameWork\\WebFramework.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Bahare Smaili\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
+    "C:\\Users\\Bahare Smaili\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\elmahcore\\2.1.2\\elmahcore.2.1.2.nupkg.sha512",

@@ -1,23 +1,57 @@
 ﻿using Common;
 using Common.Exceptions;
 using Common.Utilities;
+using Data;
 using Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using ElmahCore.Mvc;
+using ElmahCore.Sql;
 
 namespace WebFramework.Configuration
 {
     public static class ServiceCollectionExtensions
     {
+        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
+            });
+        }
+
+        public static void AddMinimalMvc(this IServiceCollection services)
+        {
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AuthorizeFilter());
+                options.EnableEndpointRouting = false;
+
+            });
+        }
+
+        public static void AddElmah(this IServiceCollection services, IConfiguration configuration, SiteSettings siteSetting)
+        {
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.Path = siteSetting.ElmahPath;
+                options.ConnectionString = configuration.GetConnectionString("Elmah");
+                //options.CheckPermissionAction = httpContext =>
+                //{
+                //    return httpContext.User.Identity.IsAuthenticated;
+                //};
+            });
+        }
+
         public static void AddJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)
         {
             services.AddAuthentication(options =>

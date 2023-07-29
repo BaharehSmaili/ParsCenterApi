@@ -110,3 +110,5 @@ D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.AspNetCore
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\NLog.Database.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Autofac.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Autofac.Extensions.DependencyInjection.dll
