@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u0NW8K4mhB/C5FxjDx9vgaIRY4+zExjUXokAWICTH5NFePB3Xnyoss4Vn2JoJydjWhBD53f2q2RBymdqmexFVQ==",
+  "dgSpecHash": "s4TTtyukof/aLfpcB2ZFGXB+GMeMw6K2qekHccjis556OTfFjSBIC3sVUhvq8i+3o/8fktJbDUpDvPLzgoSZmA==",
   "success": true,
   "projectFilePath": "D:\\Git_project\\ParsCenterApi\\ParsCenterApi\\ParsCenterApi.csproj",
   "expectedPackageFiles": [
@@ -110,6 +110,7 @@
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\nlog\\5.2.2\\nlog.5.2.2.nupkg.sha512",
+    "C:\\Users\\Bahare Smaili\\.nuget\\packages\\nlog.database\\5.2.2\\nlog.database.5.2.2.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\nlog.extensions.logging\\5.3.2\\nlog.extensions.logging.5.3.2.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\nlog.targets.sentry5\\1.0.2\\nlog.targets.sentry5.1.0.2.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.2\\nlog.web.aspnetcore.5.3.2.nupkg.sha512",

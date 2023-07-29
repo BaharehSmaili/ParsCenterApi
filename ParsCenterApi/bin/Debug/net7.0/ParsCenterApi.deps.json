@@ -9,6 +9,7 @@
       "ParsCenterApi/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "7.0.9",
+          "NLog.Database": "5.2.2",
           "NLog.Extensions.Logging": "5.3.2",
           "NLog.Targets.Sentry5": "1.0.2",
           "NLog.Web.AspNetCore": "5.3.2",
@@ -1001,6 +1002,17 @@
       "NLog/5.2.2": {
         "runtime": {
           "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.2.2.1914"
+          }
+        }
+      },
+      "NLog.Database/5.2.2": {
+        "dependencies": {
+          "NLog": "5.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.Database.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.2.2.1914"
           }
@@ -2804,6 +2816,13 @@
       "sha512": "sha512-r6Q9740g29gTwmTWlsgdIFm0mhNsfNZmbvWKX/Fxmi8X89ZrpUowHM2T2X1lP7RVpND+ef+XnfKL5g6Q1iNGXA==",
       "path": "nlog/5.2.2",
       "hashPath": "nlog.5.2.2.nupkg.sha512"
+    },
+    "NLog.Database/5.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dmf124cBEftIosD1myiP1ZYrWIY6JGkspvU2YYWPblQtPxPabCyhZoFzzWCzwdooJKa0Y1yffGoHyKWtvaYasQ==",
+      "path": "nlog.database/5.2.2",
+      "hashPath": "nlog.database.5.2.2.nupkg.sha512"
     },
     "NLog.Extensions.Logging/5.3.2": {
       "type": "package",
