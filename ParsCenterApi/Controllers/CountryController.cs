@@ -1,8 +1,11 @@
-﻿using Data.Interface;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Data.Interface;
 using Data.Repositories;
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ParsCenterApi.Models.BasicInformation;
 using WebFramework.Api;
 using WebFramework.Filters;
 
@@ -27,12 +30,24 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ApiResult<Country>> Get(int id, CancellationToken cancellationToken)
+        public async Task<ApiResult<CountryDto>> Get(int id, CancellationToken cancellationToken)
         {
             var country = await _countryRepository.GetByIdAsync(cancellationToken, id);
             if (country == null)
                 return NotFound();
-            return country;
+
+            #region Old Code
+            //var countryDto = new CountryDto
+            //{
+            //    Id = country.Id,
+            //    Title = country.Title,
+            //    TitleEn = country.TitleEn
+            //    // States
+            //};
+            //return countryDto;
+            #endregion
+            var countryDto = Mapper.Map<CountryDto>(country);
+            return countryDto;
         }
 
         [HttpPost]
@@ -43,16 +58,33 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ApiResult> Update(int id, Country country, CancellationToken cancellationToken)
+        public async Task<ApiResult<CountryDto>> Update(int id, CountryDto countryDto, CancellationToken cancellationToken)
         {
             var updateCountry = await _countryRepository.GetByIdAsync(cancellationToken, id);
 
-            updateCountry.Title = country.Title;
-            updateCountry.TitleEn = country.TitleEn;
-
+            Mapper.Map(countryDto, updateCountry);
+            #region Old Code
+            //updateCountry.Title = countryDto.Title;
+            //updateCountry.TitleEn = countryDto.TitleEn;
+            //    // States
+            #endregion
             await _countryRepository.UpdateAsync(updateCountry, cancellationToken);
 
-            return Ok();
+
+            #region old code
+            //var resultCountryDto = await _countryRepository.TableNoTracking.Select(p => new countryDto
+            //{
+            //    Id = p.Id,
+            //    Title = p.Title,
+            //    TitleEn = p.TitleEn
+            //    // States
+
+            //}).SingleOrDefaultAsync(p => p.Id == model.Id, cancellationToken);
+            #endregion
+
+            var resultCountryDto = await _countryRepository.TableNoTracking.ProjectTo<CountryDto>().SingleOrDefaultAsync(p => p.Id == updateCountry.Id, cancellationToken);
+
+            return resultCountryDto;
         }
 
         [HttpDelete]

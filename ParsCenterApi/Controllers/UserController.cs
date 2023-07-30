@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ParsCenterApi.Models;
 using Services;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,6 +16,7 @@ using WebFramework.Api;
 using WebFramework.Filters;
 using System.Security.Claims;
 using Common;
+using ParsCenterApi.Models.User;
 
 namespace ParsCenterApi.Controllers
 {
@@ -52,6 +52,7 @@ namespace ParsCenterApi.Controllers
 
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
+        //[Authorize(Roles = "Admin")]
         public async Task<ApiResult<User>> Get(Guid id, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(cancellationToken, id);
@@ -60,21 +61,6 @@ namespace ParsCenterApi.Controllers
 
             return user;
         }
-
-        //[HttpGet]
-        ////[Authorize(Roles = "Admin")]
-        //public async Task<ActionResult<List<User>>> GetAll(CancellationToken cancellationToken)
-        //{
-        //    var userName = HttpContext.User.Identity.GetUserName();
-        //    userName = HttpContext.User.Identity.Name;
-        //    var userId = HttpContext.User.Identity.GetUserId();
-        //    var userIdInt = HttpContext.User.Identity.GetUserId<int>();
-        //    var phone = HttpContext.User.Identity.FindFirstValue(ClaimTypes.MobilePhone);
-        //    //var role = HttpContext.User.Identity.FindFirstValue(ClaimTypes.Role);
-
-        //    var users = await _userRepository.TableNoTracking.ToListAsync(cancellationToken);
-        //    return Ok(users);
-        //}
 
         [HttpPost]
         public async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
@@ -115,10 +101,6 @@ namespace ParsCenterApi.Controllers
             updateUser.Email = user.Email;
             updateUser.IsActive = user.IsActive;
             updateUser.LastLoginDate = DateTimeOffset.Now;
-
-            //updateUser.Country = user.Country;
-            //updateUser.State = user.State;
-            //updateUser.City = user.City;
 
             await _userRepository.UpdateAsync(updateUser, cancellationToken);
 

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ParsCenterApi.Models
+namespace ParsCenterApi.Models.User
 {
     public class UserDto : IValidatableObject
     {
@@ -37,9 +37,9 @@ namespace ParsCenterApi.Models
 
         public bool IsActive { get; set; }
 
-        public int CountryId { get; set; }
-        public int StateId { get; set; }
-        public int CityId { get; set; }
+        //public int CountryId { get; set; }
+        //public int StateId { get; set; }
+        //public int CityId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

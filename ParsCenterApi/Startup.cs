@@ -1,16 +1,11 @@
 ﻿using Common;
-using Data;
-using Data.Interface;
-using Data.Repositories;
 using ElmahCore.Mvc;
-using ElmahCore.Sql;
 using Entities.Models.BasicInformation;
-using Microsoft.EntityFrameworkCore;
-using Services;
 using WebFramework.Middlewares;
 using WebFramework.Configuration;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using ParsCenterApi.Models.BasicInformation;
+using AutoMapper;
 
 namespace ParsCenterApi
 {
@@ -23,6 +18,12 @@ namespace ParsCenterApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Country, CountryDto>().ReverseMap();
+            });
+
             _siteSetting = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
         }
 
