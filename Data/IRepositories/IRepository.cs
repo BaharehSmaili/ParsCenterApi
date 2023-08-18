@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Data.Interface
+namespace Data.IRepositories
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {

@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Data.Interface;
+using Data.IRepositories;
 using Entities;
 using Entities.Models.User;
 
-namespace Data.Repositories
+namespace Data.IRepositories
 {
     public interface IUserRepository : IRepository<User>
     {

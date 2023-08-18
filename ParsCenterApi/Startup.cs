@@ -6,6 +6,7 @@ using WebFramework.Configuration;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using ParsCenterApi.Models.BasicInformation;
 using AutoMapper;
+using WebFramework.CustomMapping;
 
 namespace ParsCenterApi
 {
@@ -19,10 +20,14 @@ namespace ParsCenterApi
         {
             Configuration = configuration;
 
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<Country, CountryDto>().ReverseMap();
-            });
+            AutoMapperConfiguration.InitializeAutoMapper();
+
+            //Mapper.Initialize(config =>
+            //{
+            //    config.CreateMap<Country, CountryDto>().ReverseMap();
+            //    //.ForMember(p => p.Author, opt => opt.Ignore()) // برای حالتی که کلید داریم به دیتایی و نیاز نیست مپ بشه / ایگنور پراپرتی در مدل ویو
+            //    //ForSourceMember(p => p.Author, opt => opt.Ignore()) // برای ایگنور پراپرتی در مبدا یعنی مدل کشور
+            //});
 
             _siteSetting = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
         }

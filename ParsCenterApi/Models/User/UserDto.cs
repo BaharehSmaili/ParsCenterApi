@@ -1,15 +1,10 @@
-﻿using Entities;
-using Entities.Models.BasicInformation;
-using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using WebFramework.Api;
 
 namespace ParsCenterApi.Models.User
 {
-    public class UserDto : IValidatableObject
+    public class UserDto : BaseDto<UserDto, Entities.Models.User.User, Guid>, IValidatableObject 
     {
         [Required]
         [StringLength(100)]

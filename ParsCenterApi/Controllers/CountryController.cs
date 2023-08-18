@@ -23,10 +23,36 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ApiResult<List<Country>>> Get(CancellationToken cancellationToken)
+        public async Task<ApiResult<List<CountryDto>>> Get(CancellationToken cancellationToken)
         {
-            var countreis = await _countryRepository.TableNoTracking.ToListAsync(cancellationToken);
-            return Ok(countreis);
+            #region old code 
+            // برای حالتی بود که خروجی لیستی از مدل کشورها بود
+            //var countreis = await _countryRepository.TableNoTracking.ToListAsync(cancellationToken);
+            //return Ok(countreis);
+
+            //برای حالتی که لیستی از ویو مدل کشور مقدار برگشتی بود ولی بهینه نیست
+            //var countreis = await _countryRepository.TableNoTracking.ToListAsync(cancellationToken);
+            //var list = countreis.Select(p =>
+            //{
+            //    var countreisDto = Mapper.Map<CountryDto>(p);
+            //    return countreisDto;
+            //}).ToList();
+
+            //برای حالتی که از مپر استفاده نمیکنیم و خروجی مدل ویو از کسورخاست
+            //var list = await _countryRepository.TableNoTracking.Select(p => new CountryDto
+            //{
+            //    Id = p.Id,
+            //    Title = p.Title,
+            //    TitleEn = p.TitleEn,
+            //    state
+            //}).ToListAsync(cancellationToken);
+            #endregion
+
+            var listCountriesDto = await _countryRepository.TableNoTracking.ProjectTo<CountryDto>()
+                .Where(countreisDto => countreisDto.Title.Contains("test") || countreisDto.TitleEn.Contains("test")) // برای اضافه کردن شرط به خروجی
+                .ToListAsync(cancellationToken);
+
+            return Ok(listCountriesDto);
         }
 
         [HttpGet("{id:int}")]
@@ -58,18 +84,19 @@ namespace ParsCenterApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ApiResult<CountryDto>> Update(int id, CountryDto countryDto, CancellationToken cancellationToken)
+        public async Task<ApiResult<CountryDto?>> Update(int id, CountryDto countryDto, CancellationToken cancellationToken)
         {
             var updateCountry = await _countryRepository.GetByIdAsync(cancellationToken, id);
 
             Mapper.Map(countryDto, updateCountry);
+
             #region Old Code
             //updateCountry.Title = countryDto.Title;
             //updateCountry.TitleEn = countryDto.TitleEn;
             //    // States
             #endregion
-            await _countryRepository.UpdateAsync(updateCountry, cancellationToken);
 
+            await _countryRepository.UpdateAsync(updateCountry, cancellationToken);
 
             #region old code
             //var resultCountryDto = await _countryRepository.TableNoTracking.Select(p => new countryDto

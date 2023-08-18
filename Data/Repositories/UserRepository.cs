@@ -1,7 +1,7 @@
 ﻿using Common.Exceptions;
 using Common.Interface;
 using Common.Utilities;
-using Entities;
+using Data.IRepositories;
 using Entities.Models.User;
 using Microsoft.EntityFrameworkCore;
 using System;

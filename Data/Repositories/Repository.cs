@@ -1,6 +1,6 @@
 ﻿using Common.Interface;
 using Common.Utilities;
-using Data.Interface;
+using Data.IRepositories;
 using Entities;
 using Entities.Models.Basic;
 using Microsoft.EntityFrameworkCore;
