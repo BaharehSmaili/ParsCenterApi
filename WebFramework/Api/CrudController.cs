@@ -17,7 +17,7 @@ namespace WebFramework.Api
     [AllowAnonymous]
     [ApiResultFilter]
     [Route("api/[controller]")]
-    public class CrudController<TDto, TSelectDto, TEntity, TKey> : ControllerBase
+    public class CrudController<TDto, TSelectDto, TEntity, TKey> : BaseController
         where TDto : BaseDto<TDto, TEntity, TKey>, new()
         where TSelectDto : BaseDto<TSelectDto, TEntity, TKey>, new()
         where TEntity : BaseEntity<TKey>, new()
@@ -30,7 +30,7 @@ namespace WebFramework.Api
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TSelectDto>>> Get(CancellationToken cancellationToken)
+        public virtual async Task<ActionResult<List<TSelectDto>>> Get(CancellationToken cancellationToken)
         {
             var list = await _repository.TableNoTracking.ProjectTo<TSelectDto>()
                 .ToListAsync(cancellationToken);
@@ -39,7 +39,7 @@ namespace WebFramework.Api
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ApiResult<TSelectDto>> Get(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<TSelectDto>> Get(TKey id, CancellationToken cancellationToken)
         {
             var dto = await _repository.TableNoTracking.ProjectTo<TSelectDto>()
                 .SingleOrDefaultAsync(p => p.Id.Equals(id), cancellationToken);
@@ -51,7 +51,7 @@ namespace WebFramework.Api
         }
 
         [HttpPost]
-        public async Task<ApiResult<TSelectDto>> Create(TDto dto, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<TSelectDto>> Create(TDto dto, CancellationToken cancellationToken)
         {
             var model = dto.ToEntity();
 
@@ -63,7 +63,7 @@ namespace WebFramework.Api
         }
 
         [HttpPut]
-        public async Task<ApiResult<TSelectDto>> Update(TKey id, TDto dto, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<TSelectDto>> Update(TKey id, TDto dto, CancellationToken cancellationToken)
         {
             var model = await _repository.GetByIdAsync(cancellationToken, id);
 
@@ -77,7 +77,7 @@ namespace WebFramework.Api
         }
 
         [HttpDelete("{id:guid}")]
-        public async Task<ApiResult> Delete(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult> Delete(TKey id, CancellationToken cancellationToken)
         {
             var model = await _repository.GetByIdAsync(cancellationToken, id);
 

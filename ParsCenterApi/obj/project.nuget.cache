@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A5kOpmhlVO3aDeSeZr0aDhSaG5H94WLEniutoytqS4yIA77GoNEOEsrpZArOrBM+EgYTWXxECVVQfbmrhK0sKA==",
+  "dgSpecHash": "6u3RSYsBk4gcVKtNRVBCI97insTvn0Z9SuAJDGha4RI2y9nBbDnaKxaAFFOLBMZiTIsVk0vtyDlGh6YCevKE1w==",
   "success": true,
   "projectFilePath": "D:\\Git_project\\ParsCenterApi\\ParsCenterApi\\ParsCenterApi.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,7 @@
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\2.2.0\\microsoft.aspnetcore.mvc.razor.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.mvc.razorpages\\2.2.0\\microsoft.aspnetcore.mvc.razorpages.2.2.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.mvc.taghelpers\\2.2.0\\microsoft.aspnetcore.mvc.taghelpers.2.2.0.nupkg.sha512",
+    "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.1.0\\microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.mvc.viewfeatures\\2.2.0\\microsoft.aspnetcore.mvc.viewfeatures.2.2.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Bahare Smaili\\.nuget\\packages\\microsoft.aspnetcore.razor.design\\2.2.0\\microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512",

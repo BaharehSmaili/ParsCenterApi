@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebFramework.Api;
 
-namespace ParsCenterApi.Controllers
+namespace ParsCenterApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : BaseController
     {
         // GET api/values
         [HttpGet]

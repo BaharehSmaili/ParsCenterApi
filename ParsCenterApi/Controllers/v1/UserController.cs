@@ -17,13 +17,14 @@ using WebFramework.Filters;
 using System.Security.Claims;
 using Common;
 using ParsCenterApi.Models.User;
+using Data.IRepositories;
 
-namespace ParsCenterApi.Controllers
+namespace ParsCenterApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiResultFilter]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UserController> _logger;
@@ -31,9 +32,9 @@ namespace ParsCenterApi.Controllers
 
         public UserController(IUserRepository userRepository, ILogger<UserController> logger, IJwtService jwtService)
         {
-            this._userRepository = userRepository;
-            this._logger = logger;
-            this._jwtService = jwtService;
+            _userRepository = userRepository;
+            _logger = logger;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
@@ -83,7 +84,7 @@ namespace ParsCenterApi.Controllers
                 Email = userDto.Email,
                 IsActive = true,//userDto.IsActive,
                 LastLoginDate = DateTimeOffset.Now
-        };
+            };
             await _userRepository.AddAsync(user, userDto.Password, cancellationToken);
             return user;
         }

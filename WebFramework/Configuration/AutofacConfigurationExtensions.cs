@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Common;
 using Common.Interface;
 using Data;
-using Data.Interface;
+using Data.IRepositories;
 using Data.Repositories;
 using Entities.Models.Basic;
 using Microsoft.Extensions.DependencyInjection;

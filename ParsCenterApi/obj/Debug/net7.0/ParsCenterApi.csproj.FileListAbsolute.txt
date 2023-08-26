@@ -113,3 +113,4 @@ D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\NLog.Database.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Autofac.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Autofac.Extensions.DependencyInjection.dll
 D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\AutoMapper.dll
+D:\Git_project\ParsCenterApi\ParsCenterApi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll

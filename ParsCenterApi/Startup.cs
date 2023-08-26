@@ -45,6 +45,8 @@ namespace ParsCenterApi
 
             services.AddJwtAuthentication(_siteSetting.JwtSettings);
 
+            services.AddCustomApiVersioning();
+
             return services.BuildAutofacServiceProvider();
         }
 

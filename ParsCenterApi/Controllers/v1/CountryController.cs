@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Data.Interface;
+using Data.IRepositories;
 using Data.Repositories;
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +9,17 @@ using ParsCenterApi.Models.BasicInformation;
 using WebFramework.Api;
 using WebFramework.Filters;
 
-namespace ParsCenterApi.Controllers
+namespace ParsCenterApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
     [ApiResultFilter]
-    public class CountryController : ControllerBase
+    public class CountryController : BaseController
     {
         private readonly IRepository<Country> _countryRepository;
         public CountryController(IRepository<Country> countryRepository)
         {
-            this._countryRepository = countryRepository;
+            _countryRepository = countryRepository;
         }
 
         [HttpGet]

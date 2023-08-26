@@ -1,21 +1,21 @@
-﻿using Data.Interface;
+﻿using Data.IRepositories;
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebFramework.Api;
 using WebFramework.Filters;
 
-namespace ParsCenterApi.Controllers
+namespace ParsCenterApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
     [ApiResultFilter]
-    public class StateController : ControllerBase
+    public class StateController : BaseController
     {
         private readonly IRepository<State> _stateRepository;
         public StateController(IRepository<State> stateRepository)
         {
-            this._stateRepository = stateRepository;
+            _stateRepository = stateRepository;
         }
 
         [HttpGet]

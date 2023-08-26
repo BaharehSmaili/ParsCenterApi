@@ -1,21 +1,21 @@
-﻿using Data.Interface;
+﻿using Data.IRepositories;
 using Entities.Models.BasicInformation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebFramework.Api;
 using WebFramework.Filters;
 
-namespace ParsCenterApi.Controllers
+namespace ParsCenterApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
     [ApiResultFilter]
-    public class CityController : ControllerBase
+    public class CityController : BaseController
     {
         private readonly IRepository<City> _cityRepository;
         public CityController(IRepository<City> cityRepository)
         {
-            this._cityRepository = cityRepository;
+            _cityRepository = cityRepository;
         }
 
         [HttpGet]
