@@ -7,9 +7,7 @@ using WebFramework.Filters;
 
 namespace ParsCenterApi.Controllers.v1
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [ApiResultFilter]
+    [ApiVersion("1")]
     public class StateController : BaseController
     {
         private readonly IRepository<State> _stateRepository;

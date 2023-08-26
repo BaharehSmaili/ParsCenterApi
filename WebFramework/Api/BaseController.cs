@@ -10,7 +10,6 @@ namespace WebFramework.Api
     [ApiController]
     [AllowAnonymous] //hazf she
     [ApiResultFilter]
-    [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]// api/v1/[controller]
     public class BaseController : ControllerBase
     {

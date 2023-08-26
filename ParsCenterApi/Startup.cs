@@ -7,6 +7,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using ParsCenterApi.Models.BasicInformation;
 using AutoMapper;
 using WebFramework.CustomMapping;
+using WebFramework.Swagger;
 
 namespace ParsCenterApi
 {
@@ -47,6 +48,8 @@ namespace ParsCenterApi
 
             services.AddCustomApiVersioning();
 
+            services.AddSwaggerGen();
+
             return services.BuildAutofacServiceProvider();
         }
 
@@ -55,11 +58,16 @@ namespace ParsCenterApi
         {
             app.UseCustomExceptionHandler();
 
-            app.UseHsts();
-           
+            app.UseHsts(env);
+
             app.UseElmah();
+
             app.UseHttpsRedirection();
+
+            app.UseSwaggerAndUI();
+
             app.UseAuthentication();
+
             app.UseMvc();
         }
     }

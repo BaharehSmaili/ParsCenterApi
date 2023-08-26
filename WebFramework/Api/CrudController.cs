@@ -13,10 +13,8 @@ using WebFramework.Filters;
 
 namespace WebFramework.Api
 {
-    [ApiController]
-    [AllowAnonymous]
-    [ApiResultFilter]
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    // اگر از کراد کنترلر ارث بری کردیم نیازی نیست ورژن را در بالای کنترلر تعریف کنیم
     public class CrudController<TDto, TSelectDto, TEntity, TKey> : BaseController
         where TDto : BaseDto<TDto, TEntity, TKey>, new()
         where TSelectDto : BaseDto<TSelectDto, TEntity, TKey>, new()

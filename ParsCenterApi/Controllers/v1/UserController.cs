@@ -21,9 +21,7 @@ using Data.IRepositories;
 
 namespace ParsCenterApi.Controllers.v1
 {
-    [Route("api/[controller]")]
-    [ApiResultFilter]
-    [ApiController]
+    [ApiVersion("1")]
     public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
@@ -119,6 +117,13 @@ namespace ParsCenterApi.Controllers.v1
             return Ok();
         }
 
+        /// <summary>
+        /// This method generate JWT Token
+        /// </summary>
+        /// <param name="mobile">The Mobile of User</param>
+        /// <param name="password">The Password of User</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("[action]")]
         [AllowAnonymous]
         public async Task<string> Token(string mobile, string password, CancellationToken cancellationToken)

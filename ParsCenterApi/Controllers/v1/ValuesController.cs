@@ -8,8 +8,7 @@ using WebFramework.Api;
 
 namespace ParsCenterApi.Controllers.v1
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [ApiVersion("1")]
     public class ValuesController : BaseController
     {
         // GET api/values
